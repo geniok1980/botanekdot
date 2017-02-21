@@ -82,7 +82,8 @@ var cheerio = require('cheerio')
     if($(this).find('CharCode').text()=="EUR"){ 
     name[i] = $(this).find('Value').text();
   //bot.sendMessage(chatId, name[i]);
-  console.log(name[i])
+  //console.log(name[i])
+  bot.sendMessage(chatId, name[i]);
 }
 });
 //  }
