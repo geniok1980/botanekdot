@@ -91,7 +91,7 @@ var deltoday = String(Year+'-'+Month+'-'+Day);
     name[i] = $(this).find('Value').text();
   //bot.sendMessage(chatId, name[i]);
   //console.log(name[i])
-  bot.sendMessage(chatId, 'курс долара 'name[i]);
+  bot.sendMessage(chatId, 'курс доллара '+name[i]);
 }
 });
 //  }
