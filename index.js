@@ -12,7 +12,15 @@ var cheerio = require('cheerio')
 //var = result
 //var = body;
 //var = result;
+var Data = new Date();
+ var Year = Data.getFullYear();
+ var Month = ('0'+parseInt(Data.getMonth()+1)).slice(-2);
+ var Day = ('0'+Data.getDate()).slice(-2);
+//var today = document.write(Day+'.'+Month+'.'+Year);
+//console.log(Day+'.'+Month+'.'+Year);
+var today = String(Day+'/'+Month+'/'+Year);
 
+var deltoday = String(Year+'-'+Month+'-'+Day);
 
 
   // отправляем сообщение в чат
@@ -34,14 +42,14 @@ var cheerio = require('cheerio')
       bot.sendDocument(chatId, 'price.xls');
       //start(chatId)
     break;
-    case 'Анекдот':
+    case 'Курс валют':
      //bot.sendMessage(chatId, 'Вы видите кубок!');
-     anekdot(chatId);
+     kursvalut(chatId);
     break;
     
   }
 });
-  function anekdot(chatId) {
+  function kursvalut(chatId) {
 
 
    //var xhr = new XMLHttpRequest();
@@ -60,7 +68,7 @@ var cheerio = require('cheerio')
   // вывести результат
   //console.log(xhr.responseText); // responseText -- текст ответа.
 //} 
-  var url = 'http://www.cbr.ru/scripts/XML_daily.asp?date_req=07/02/2017';
+  var url = 'http://www.cbr.ru/scripts/XML_daily.asp?date_req='+today;
   console.log(url)
   request(url, function(error, response, body) {
   //  console.log("1");
@@ -79,11 +87,11 @@ var cheerio = require('cheerio')
     $('Valute').each(function(i, elem) {
      // var n = $(this).find("Value");
      //console.log($(this).find('CharCode').text())
-    if($(this).find('CharCode').text()=="EUR"){ 
+    if($(this).find('CharCode').text()=="USD"){ 
     name[i] = $(this).find('Value').text();
   //bot.sendMessage(chatId, name[i]);
   //console.log(name[i])
-  bot.sendMessage(chatId, name[i]);
+  bot.sendMessage(chatId, 'курс долара 'name[i]);
 }
 });
 //  }
@@ -116,7 +124,7 @@ function start(chatId) {
           callback_data: '146'
         }],
         [{
-          text: 'Анекдот',
+          text: 'Курс валют',
           callback_data: '151'
         }]]
     })
