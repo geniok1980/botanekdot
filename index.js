@@ -33,13 +33,18 @@ var deltoday = String(Year+'-'+Month+'-'+Day);
     case '/start':
       start(chatId);
     break;
-    case 'Войти':
-      bot.sendMessage(chatId, 'Введите логин');
+    case 'Техподдержка':
+      bot.sendMessage(chatId, 'Техподдержка');
       start(chatId)
     break;
-    case 'Реквизиты':
-      bot.sendMessage(chatId, 'Реквизиты компании');
-      bot.sendDocument(chatId, 'price.xls');
+    case 'Dashboard R-keeper':
+      bot.sendMessage(chatId, 'Dashboard R-keeper');
+     // bot.sendDocument(chatId, 'price.xls');
+      //start(chatId)
+    break;
+    case 'Проверка контрагента по ИНН':
+      bot.sendMessage(chatId, 'Проверка контрагента по ИНН');
+     // bot.sendDocument(chatId, 'price.xls');
       //start(chatId)
     break;
     case 'Курс валют':
@@ -91,7 +96,7 @@ var deltoday = String(Year+'-'+Month+'-'+Day);
     name[i] = $(this).find('Value').text();
   //bot.sendMessage(chatId, name[i]);
   //console.log(name[i])
-  bot.sendMessage(chatId, 'курс доллара '+name[i]);
+  bot.sendMessage(chatId, 'курс доллара на '+today+' составляет '+name[i]);
 }
 });
 //  }
@@ -116,12 +121,16 @@ function start(chatId) {
     reply_markup: JSON.stringify({
       keyboard: [
         [{
-          text: 'Войти',
+          text: 'Техподдержка',
           callback_data: '147'
         }],
         [{
-          text: 'Реквизиты',
+          text: 'Dashboard R-keeper',
           callback_data: '146'
+        }],
+        [{
+          text: 'Проверка контрагента по ИНН',
+          callback_data: '201'
         }],
         [{
           text: 'Курс валют',
